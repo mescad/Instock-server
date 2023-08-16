@@ -1,14 +1,15 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
 const apiController = require("../controllers/api-controller");
-const inventoryController = require('../controllers/inventory-controller')
+const inventoryController = require("../controllers/inventory-controller");
 
-router 
-    .route('/inventories')
-    .get(inventoryController.getAll);
+// Inventories
+router.route("/inventories").get(inventoryController.getAll);
+router.route("/inventories/:id").get(inventoryController.getOne);
 
+// Warehouses
 
-router
-    .route('/inventories/:id')
-    .get(inventoryController.getOne)
+router.route("/warehouses").get(apiController.getAllWarehouse); //rico
+router.route("/warehouses/:id").get(apiController.getOneWarehouse); //rico
+
 module.exports = router;
