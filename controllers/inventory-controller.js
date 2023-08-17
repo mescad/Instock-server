@@ -28,3 +28,17 @@ exports.getOne = async (req, res) => {
     });
   }
 };
+
+
+exports.addOneItem=async(req,res)=>{
+  try{  
+    if (!req.body.item_name || !req.body.description || !req.body.category || !req.body.status || !req.body.quantity || !req.body.warehouse_id){
+      return res.status(400).send("Please provide all the information about the item (item_name,warehouse_id description,category,status & quantity)")
+    }
+    const newItemID=await knex("inventories").insert(req.body);
+    const newItem=await knex("inventories").where({id:newItemID[0]}).first();
+    res.status(201).json(newItem)
+  
+}catch(error){
+  res.status(500).json('Unable to update the new item')
+}}
