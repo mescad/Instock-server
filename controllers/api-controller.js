@@ -2,6 +2,7 @@ const knex = require('knex')(require('../knexfile'));
 
 exports.getAllWarehouse = async (req, res) => {
   const warehouses = await knex('warehouses').select([
+    'id',
     ' warehouse_name',
     'address',
     'city',
@@ -20,6 +21,7 @@ exports.getOneWarehouse = async (req, res) => {
     const warehouse = await knex('warehouses')
       .where({ id: req.params.id })
       .select([
+        'id',
         ' warehouse_name',
         'address',
         'city',
