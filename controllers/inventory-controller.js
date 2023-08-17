@@ -117,3 +117,19 @@ exports.updateOneItem = async (req, res) => {
       .json(`Unable to make changes to current item ID ${req.params.id}`);
   }
 };
+
+
+
+exports.deleteInventoryItem = async (req, res) => {
+  try {
+    if (!req.params.id) {
+      return res.status(404).send(`Inventory ID ${req.params.id} not found`);
+    }
+    await knex("inventories")
+      .where({ "inventories.id": req.params.id })
+      .delete();
+    res.sendStatus(204);
+  } catch (error) {
+    return res.status(500).send("Unable to delete the inventory item");
+  }
+};
