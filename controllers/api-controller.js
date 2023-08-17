@@ -103,9 +103,13 @@ exports.createWarehouse = async (req, res) => {
 			contact_email: payload.contact_email,
 		};
 		const newRecordIndex = await knex("warehouses").insert([newWarehouse]);
-		const result = await knex("warehouses").select(["id",...requiredField]).where({
-			id: newRecordIndex[0],
-		}).first();
+		const result = await knex("warehouses")
+			.select(["id", ...requiredField])
+			.where({
+				id: newRecordIndex[0],
+			})
+			.first();
+      
 		res.status(200).json(result);
 	} catch (err) {
 		res.status(err.statusCode ? err.statusCode : 500).json({
