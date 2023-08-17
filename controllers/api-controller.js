@@ -73,6 +73,24 @@ exports.inventoryInWarehouse = async (req, res) => {
 	}
 };
 
+exports.deleteWarehouse = async (req, res) => {
+  try {
+    if (!req.params.id) {
+      return res.status(404).send("warehouse ID not found");
+    }
+    const deleteOneWarehouse = await knex("warehouses")
+      .where({ id: req.params.id })
+      .delete();
+    res.sendStatus(204);
+  } catch (error) {
+    res
+      .status(500)
+      .json({
+        message: `ID didn't match the database for deletion id:${req.params.id} ${error}`,
+      });
+  }
+};
+
 exports.createWarehouse = async (req, res) => {
 	try {
 		const payload = req.body;
