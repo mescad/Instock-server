@@ -31,7 +31,6 @@ exports.getOne = async (req, res) => {
 
 
 exports.addOneItem=async(req,res)=>{
-  console.log(req)
   try{  
     if (!req.body.item_name || !req.body.description || !req.body.category || !req.body.status || !req.body.quantity || !req.body.warehouse_id){
       return res.status(400).send("Please provide all the information about the item (item_name,warehouse_id description,category,status & quantity)")
