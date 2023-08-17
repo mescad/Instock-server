@@ -65,4 +65,19 @@ exports.inventoryInWarehouse = async (req, res) => {
   }
 };
 
+
+
+exports.deleteWarehouse = async (req, res) =>{
+  try{
+    const deleteOneWarehouse = await knex('warehouses')
+    .join('inventories', 'inventories.warehouse_id', 'warehouses.id')
+    .where({warehouse_id: req.params.id})
+    .delete();
+    res.sendStatus(204)}
+    catch(error){
+      res.status(500).json({message:`id didn't match the database for delettion id:${req.params.id} ${error}`})
+    }
+  }
+
+
 //exports.
