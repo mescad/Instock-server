@@ -4,7 +4,7 @@ const apiController = require('../controllers/api-controller');
 const inventoryController = require('../controllers/inventory-controller');
 
 // Inventories
-router.route('/inventories').get(inventoryController.getAll);
+router.route('/inventories').get(inventoryController.getAll).post(inventoryController.addOneItem);
 router.route('/inventories/:id').get(inventoryController.getOne);
 
 // Warehouses
