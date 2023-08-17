@@ -10,7 +10,8 @@ router.route('/inventories/:id').get(inventoryController.getOne);
 // Warehouses
 
 router.route('/warehouses').get(apiController.getAllWarehouse); //rico
-router.route('/warehouses/:id').get(apiController.getOneWarehouse); //rico
+router.route('/warehouses/:id').get(apiController.getOneWarehouse).delete(apiController.deleteWarehouse) //rico
+
 
 // get inventories on single warehouse
 router
