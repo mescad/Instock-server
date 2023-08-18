@@ -8,7 +8,7 @@ router
 	.route("/inventories")
 	.get(inventoryController.getAll)
 	.post(inventoryController.addOneItem);
-  
+
 router
 	.route("/inventories/:id")
 	.get(inventoryController.getOne)
@@ -24,6 +24,7 @@ router
 router
 	.route("/warehouses/:id")
 	.get(apiController.getOneWarehouse)
+  .put(apiController.updateOneWarehouse)
 	.delete(apiController.deleteWarehouse);
 
 // get inventories on single warehouse
