@@ -53,7 +53,7 @@ exports.addOneItem = async (req, res) => {
       !req.body.description ||
       !req.body.category ||
       !req.body.status ||
-      !req.body.quantity ||
+      req.body.quantity===null ||
       !req.body.warehouse_id
     ) {
       return res
